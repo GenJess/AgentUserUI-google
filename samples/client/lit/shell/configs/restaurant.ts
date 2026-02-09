@@ -19,6 +19,8 @@ import { AppConfig } from "./types.js";
 export const config: AppConfig = {
   key: "restaurant",
   title: "Restaurant Finder",
+  description:
+    "Discover the right table fast. Ask with intent, compare confidently, and get a curated shortlist.",
   heroImage: "/hero.png",
   heroImageDark: "/hero-dark.png",
   background: `radial-gradient(
@@ -47,6 +49,11 @@ export const config: AppConfig = {
     light-dark(#e2e8f0, #1e293b) 100%
   )`,
   placeholder: "Top 5 Chinese restaurants in New York.",
+  suggestions: [
+    "Best ramen spots in Seattle with outdoor seating.",
+    "Date-night restaurants in Austin under $50.",
+    "Quick lunch near SoHo with vegetarian options.",
+  ],
   loadingText: [
     "Finding the best spots for you...",
     "Checking reviews...",
