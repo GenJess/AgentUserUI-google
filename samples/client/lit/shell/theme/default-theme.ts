@@ -164,35 +164,19 @@ export const theme: v0_8.Types.Theme = {
       "--n-35": "var(--n-100)",
       "--n-10": "var(--n-0)",
       background:
-        "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-      boxShadow: "0 4px 15px rgba(102, 126, 234, 0.4)",
-      padding: "12px 28px",
-      textTransform: "uppercase",
+        "linear-gradient(135deg, light-dark(#4f46e5, #38bdf8) 0%, light-dark(#6366f1, #0ea5e9) 100%)",
+      boxShadow: "0 12px 24px -20px rgba(15, 23, 42, 0.6)",
+      padding: "12px 26px",
     },
     Text: {
       h1: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "light-dark(#0f172a, #f8fafc)",
       },
       h2: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "light-dark(#1f2937, #e2e8f0)",
       },
       h3: {
-        color: "transparent",
-        background:
-          "linear-gradient(135deg, light-dark(#818cf8, #06b6d4) 0%, light-dark(#a78bfa, #3b82f6) 100%)",
-        "-webkit-background-clip": "text",
-        "background-clip": "text",
-        "-webkit-text-fill-color": "transparent",
+        color: "light-dark(#334155, #cbd5f5)",
       },
       h4: {},
       h5: {},
@@ -201,7 +185,9 @@ export const theme: v0_8.Types.Theme = {
     },
     Card: {
       background:
-        "radial-gradient(circle at top left, light-dark(transparent, rgba(6, 182, 212, 0.15)), transparent 40%), radial-gradient(circle at bottom right, light-dark(transparent, rgba(139, 92, 246, 0.15)), transparent 40%), linear-gradient(135deg, light-dark(rgba(255, 255, 255, 0.7), rgba(30, 41, 59, 0.7)), light-dark(rgba(255, 255, 255, 0.7), rgba(15, 23, 42, 0.8)))",
+        "linear-gradient(135deg, light-dark(rgba(255, 255, 255, 0.95), rgba(15, 23, 42, 0.9)) 0%, light-dark(rgba(248, 250, 252, 0.9), rgba(2, 6, 23, 0.9)) 100%)",
+      border: "1px solid light-dark(rgba(148, 163, 184, 0.3), rgba(30, 41, 59, 0.7))",
+      boxShadow: "0 24px 48px -36px rgba(15, 23, 42, 0.6)",
     },
     TextField: {
       "--p-0": "light-dark(var(--n-0), #1e293b)",

@@ -24,6 +24,8 @@ export interface AppConfig {
   key: string;
   /** Display title of the application */
   title: string;
+  /** Supporting description for the hero section */
+  description?: string;
   /** The background for the page */
   background?: string;
   /** Path to the hero image */
@@ -32,6 +34,8 @@ export interface AppConfig {
   heroImageDark?: string;
   /** Placeholder text for the input field */
   placeholder: string;
+  /** Suggestions to help users start quickly */
+  suggestions?: string[];
   /** Text to display while loading (optional). Can be a single string or an array of strings to rotate. */
   loadingText?: string | string[];
   /** Optional server URL for the agent (e.g., http://localhost:10003) */

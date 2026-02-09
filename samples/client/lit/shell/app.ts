@@ -76,22 +76,30 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
   static styles = [
     unsafeCSS(v0_8.Styles.structuralStyles),
     css`
+      :host {
+        --shell-border: light-dark(rgba(148, 163, 184, 0.3), rgba(30, 41, 59, 0.6));
+        --shell-surface: light-dark(rgba(255, 255, 255, 0.85), rgba(15, 23, 42, 0.72));
+        --shell-surface-strong: light-dark(rgba(255, 255, 255, 0.98), rgba(15, 23, 42, 0.92));
+        --shell-accent: light-dark(#4f46e5, #38bdf8);
+      }
+
       * {
         box-sizing: border-box;
       }
 
       :host {
         display: block;
-        max-width: 640px;
+        max-width: 720px;
         margin: 0 auto;
         min-height: 100%;
         color: light-dark(var(--n-10), var(--n-90));
         font-family: var(--font-family);
+        padding: clamp(24px, 3vw, 40px) clamp(16px, 4vw, 32px) 48px;
       }
 
       #hero-img {
         width: 100%;
-        max-width: 400px;
+        max-width: 420px;
         aspect-ratio: 1280/720;
         height: auto;
         margin-bottom: var(--bb-grid-size-6);
@@ -99,6 +107,14 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
         margin: 0 auto;
         background: var(--background-image-light) center center / contain
           no-repeat;
+        border-radius: 24px;
+        box-shadow: 0 24px 48px -32px rgba(15, 23, 42, 0.55);
+        transition: transform 400ms ease, box-shadow 400ms ease;
+      }
+
+      #hero-img:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 32px 64px -36px rgba(15, 23, 42, 0.6);
       }
 
       #surfaces {
@@ -112,13 +128,21 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
         display: flex;
         flex-direction: column;
         flex: 1;
-        gap: 16px;
+        gap: 20px;
         align-items: center;
-        padding: 16px 0;
+        padding: 24px;
+        border-radius: 28px;
+        background: var(--shell-surface);
+        border: 1px solid var(--shell-border);
+        box-shadow: 0 30px 80px -60px rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(14px);
         animation: fadeIn 1s cubic-bezier(0, 0, 0.3, 1) 1s backwards;
 
         & h1 {
-          color: light-dark(var(--p-40), var(--n-90));
+          color: light-dark(#0f172a, #f8fafc);
+          font-size: clamp(28px, 4vw, 36px);
+          letter-spacing: -0.03em;
+          margin-bottom: 4px;
         }
 
         & > div {
@@ -131,29 +155,89 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
           & > input {
             display: block;
             flex: 1;
-            border-radius: 32px;
-            padding: 16px 24px;
-            border: 1px solid var(--p-60);
-            background: light-dark(var(--n-100), var(--n-10));
+            border-radius: 999px;
+            padding: 16px 22px;
+            border: 1px solid transparent;
+            background: var(--shell-surface-strong);
             font-size: 16px;
+            color: light-dark(var(--n-10), var(--n-90));
+            box-shadow: inset 0 0 0 1px
+              light-dark(rgba(148, 163, 184, 0.35), rgba(30, 41, 59, 0.6));
+            transition: box-shadow 200ms ease, border-color 200ms ease,
+              background 200ms ease;
+          }
+
+          & > input:focus {
+            outline: none;
+            border-color: var(--shell-accent);
+            box-shadow: 0 0 0 3px
+              light-dark(rgba(79, 70, 229, 0.2), rgba(56, 189, 248, 0.25));
           }
 
           & > button {
             display: flex;
             align-items: center;
-            background: var(--p-40);
+            justify-content: center;
+            background: var(--shell-accent);
             color: var(--n-100);
             border: none;
-            padding: 8px 16px;
-            border-radius: 32px;
+            padding: 12px 18px;
+            border-radius: 999px;
             opacity: 0.5;
+            transition: transform 200ms ease, box-shadow 200ms ease,
+              opacity 200ms ease;
 
             &:not([disabled]) {
               cursor: pointer;
               opacity: 1;
+              box-shadow: 0 12px 24px -18px rgba(15, 23, 42, 0.65);
+            }
+
+            &:not([disabled]):hover {
+              transform: translateY(-1px);
+            }
+
+            &:not([disabled]):active {
+              transform: translateY(0);
             }
           }
         }
+      }
+
+      .app-subtitle {
+        margin: 0;
+        color: light-dark(rgba(15, 23, 42, 0.7), rgba(226, 232, 240, 0.72));
+        font-size: 15px;
+        line-height: 1.5;
+        text-align: center;
+        max-width: 520px;
+      }
+
+      .app-actions {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .suggestion {
+        border-radius: 999px;
+        border: 1px solid var(--shell-border);
+        background: light-dark(rgba(255, 255, 255, 0.8), rgba(15, 23, 42, 0.8));
+        color: light-dark(rgba(15, 23, 42, 0.8), rgba(226, 232, 240, 0.9));
+        padding: 8px 14px;
+        font-size: 13px;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        transition: transform 200ms ease, border-color 200ms ease,
+          box-shadow 200ms ease;
+      }
+
+      .suggestion:hover {
+        transform: translateY(-1px);
+        border-color: light-dark(rgba(79, 70, 229, 0.4), rgba(56, 189, 248, 0.4));
+        box-shadow: 0 12px 24px -18px rgba(15, 23, 42, 0.4);
       }
 
       .rotate {
@@ -175,7 +259,7 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
         width: 48px;
         height: 48px;
         border: 4px solid rgba(255, 255, 255, 0.1);
-        border-left-color: var(--p-60);
+        border-left-color: var(--shell-accent);
         border-radius: 50%;
         animation: spin 1s linear infinite;
       }
@@ -190,13 +274,16 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
         position: fixed;
         top: var(--bb-grid-size-3);
         right: var(--bb-grid-size-4);
-        background: light-dark(var(--n-100), var(--n-0));
+        background: light-dark(rgba(255, 255, 255, 0.9), rgba(15, 23, 42, 0.9));
         border-radius: 50%;
-        color: var(--p-30);
+        color: var(--shell-accent);
         cursor: pointer;
         width: 48px;
         height: 48px;
         font-size: 32px;
+        border: 1px solid var(--shell-border);
+        box-shadow: 0 16px 32px -24px rgba(15, 23, 42, 0.5);
+        transition: transform 200ms ease, box-shadow 200ms ease;
 
         & .g-icon {
           pointer-events: none;
@@ -205,6 +292,11 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
             content: "dark_mode";
           }
         }
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 20px 36px -26px rgba(15, 23, 42, 0.55);
       }
 
       @container style(--color-scheme: dark) {
@@ -363,6 +455,23 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
           ></div>`
         : nothing}
       <h1 class="app-title">${this.config.title}</h1>
+      ${this.config.description
+        ? html`<p class="app-subtitle">${this.config.description}</p>`
+        : nothing}
+      ${Array.isArray(this.config.suggestions) &&
+      this.config.suggestions.length > 0
+        ? html`<div class="app-actions">
+            ${this.config.suggestions.map(
+          (suggestion) => html`<button
+                class="suggestion"
+                type="button"
+                @click=${() => this.#applySuggestion(suggestion)}
+              >
+                ${suggestion}
+              </button>`
+        )}
+          </div>`
+        : nothing}
       <div>
         <input
           required
@@ -392,6 +501,15 @@ export class A2UILayoutEditor extends SignalWatcher(LitElement) {
           (this.config.loadingText as string[]).length;
       }, 2000);
     }
+  }
+
+  #applySuggestion(suggestion: string) {
+    const input = this.renderRoot?.querySelector<HTMLInputElement>(
+      "input[name='body']"
+    );
+    if (!input) return;
+    input.value = suggestion;
+    input.focus();
   }
 
   #stopLoadingAnimation() {
